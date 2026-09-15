@@ -1,4 +1,5 @@
-import { Show, SignInButton, SignUpButton, UserButton } from "@clerk/nextjs";
+import { Show, SignInButton, SignUpButton } from "@clerk/nextjs";
+import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -48,7 +49,15 @@ const Navbar = () => {
             </SignUpButton>
           </Show>
           <Show when="signed-in">
-            <UserButton />
+            <Link
+              href="/dashboard"
+              className={cn(
+                buttonVariants({ size: "sm" }),
+                "rounded-none border-2 border-black bg-yellow-300 px-4 text-sm font-bold uppercase text-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:bg-yellow-400 hover:translate-x-0 hover:translate-y-0 active:shadow-none active:translate-x-1 active:translate-y-1"
+              )}
+            >
+              Panele Git
+            </Link>
           </Show>
         </div>
       </div>
