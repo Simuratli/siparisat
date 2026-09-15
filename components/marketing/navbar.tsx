@@ -1,4 +1,6 @@
-import CtaLink from "./cta-link";
+import { Show, SignInButton, SignUpButton, UserButton } from "@clerk/nextjs";
+import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 const navLinks = [
   { href: "#how-it-works", label: "Nasıl Çalışır" },
@@ -28,19 +30,31 @@ const Navbar = () => {
         </nav>
 
         <div className="flex items-center gap-3">
-          <a
-            href="#login"
-            className="hidden text-sm font-bold uppercase tracking-tight text-black underline-offset-4 hover:underline sm:inline"
-          >
-            Giriş Yap
-          </a>
-          <CtaLink href="#pricing" size="sm" className="px-4 text-sm">
-            Ücretsiz Başla
-          </CtaLink>
+          <Show when="signed-out">
+            <SignInButton mode="modal" forceRedirectUrl="/dashboard">
+              <button className="hidden text-sm font-bold uppercase tracking-tight text-black underline-offset-4 hover:underline sm:inline">
+                Giriş Yap
+              </button>
+            </SignInButton>
+            <SignUpButton mode="modal" forceRedirectUrl="/dashboard">
+              <button
+                className={cn(
+                  buttonVariants({ size: "sm" }),
+                  "rounded-none border-2 border-black bg-yellow-300 px-4 text-sm font-bold uppercase text-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:bg-yellow-400 hover:translate-x-0 hover:translate-y-0 active:shadow-none active:translate-x-1 active:translate-y-1"
+                )}
+              >
+                Ücretsiz Başla
+              </button>
+            </SignUpButton>
+          </Show>
+          <Show when="signed-in">
+            <UserButton />
+          </Show>
         </div>
       </div>
     </header>
   );
 };
+
 
 export default Navbar;
