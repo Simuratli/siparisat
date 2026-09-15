@@ -11,7 +11,7 @@ const DashboardPage = async () => {
         Dashboard
       </h1>
       <p className="max-w-md text-base font-medium text-black/70">
-        Siparişlerin ve WhatsApp entegrasyonun burada yönetilecek.
+        Siparişlerin ve WhatsApp entegrasyonun burada yönetilecek. !@
       </p>
     </div>
   );
